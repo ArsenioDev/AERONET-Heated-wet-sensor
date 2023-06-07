@@ -993,6 +993,10 @@
     (effects (font (size 1.27 1.27) (thickness 0.254) bold) (justify left bottom))
     (uuid cb2aeb18-10d3-4714-8248-15518044b966)
   )
+  (text "AMOGUS\n" (at 179.705 53.975 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid d24804d5-1a1e-4a65-83f6-852dd15fc71b)
+  )
 
   (label "SCL" (at 240.665 135.89 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27) bold) (justify left bottom))
