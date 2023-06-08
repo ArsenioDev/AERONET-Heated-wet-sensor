@@ -1149,7 +1149,7 @@
     )
   )
 
-  (gr_rect (start 119.175 62.2) (end 159.025 106.7)
+  (gr_rect (start 119.175 62.2) (end 151.45 106.7)
     (stroke (width 0.1) (type default)) (fill none) (layer "Edge.Cuts") (tstamp 38bd00d0-4a82-4189-af1d-1f33e452c242))
   (dimension (type aligned) (layer "User.1") (tstamp f66ec660-4d27-4697-8b9a-c916b82a2499)
     (pts (xy 121.4 72.125) (xy 136.65 72.125))
