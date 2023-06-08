@@ -85,7 +85,7 @@ void loop() {
   // }
 
   
-  DangerDew(AtmoSensorDew(), LongTempSensorDew());
+  Serial.print(DangerDew(AtmoSensorDew(), LongTempSensorDew()));
   
 
   SerialPrinter(AtmoSensorDew(), LongTempSensorDew());
@@ -120,9 +120,9 @@ float AtmoSensorDew(){
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void DangerDew(float AtmoDewPont, float SenseDewPont){
+boolean DangerDew(float AtmoDewPont, float SenseDewPont){
 
-  boolean danger = AtmoDewPont + 10 > SenseDewPont;
+  boolean danger = AtmoDewPont + 18 > SenseDewPont;
 
   if (danger){
     digitalWrite(6, HIGH);
@@ -131,6 +131,8 @@ void DangerDew(float AtmoDewPont, float SenseDewPont){
     digitalWrite(6, LOW);
     digitalWrite(LED_BUILTIN,LOW);
   }
+
+  return danger;
 }
 
 void SerialPrinter(float AtmoDewPont, float SenseDewPont){
