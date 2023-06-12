@@ -6,20 +6,23 @@
 ## Heated Wet Sensor for the NASA AERONET program
 
 ![Ray tracing render](/IMG/DewDeleterPCB.PNG)
+Designed as part of USNA-to-NASA internship by Victor Zimmerman. 
 
 ### Description
-A PCB designed to cure NASA AERONET robots suffering from dew induced crepuscular narcolepsy (instruments remaining in standby due to dew on wet sensor). The PCB is Connected to temperature sensors, CIMEL control box and a heated wet sensor, in order to determine if the wet sensor is at risk of dew condensation. If so, turns on heater to prevent dew condensation. Determines dew risk by calculating dew point at BME280(atmospheric DP) and compares it to dew point calculated by temperature sensor underneath heated wet sensor(Sensor DP). Heats wet senor until sensor DP is higher than atmospheric DP. Formula used to calculate dew point: 
+ 
+
+A PCB designed to cure NASA AERONET robots suffering from dew induced crepuscular narcolepsy (instruments remaining in standby due to dew on wet sensor). The PCB is connected to temperature sensors, CIMEL control box and a heated wet sensor, in order to determine if the wet sensor is at risk of dew condensation. If so, turns on heater to prevent dew condensation. Determines dew risk by calculating dew point at BME280(atmospheric DP) and compares it to dew point calculated by temperature sensor underneath heated wet sensor(Sensor DP). Heats wet sensor until sensor DP is higher than atmospheric DP. Formula used to calculate dew point: 
 
 ![𝐷𝑃=𝑇−(100 −𝐻)/5](https://github.com/ArsenioDev/AERONET-Heated-wet-sensor/assets/134075255/2027e12e-ac90-4998-baf8-d848c2ede493)
 
-Is mostly a "plug-and-play" design; does not need any programming or input from operator beyond initial code load. Runs on 12V and 1.5A power supply.
+Is mostly a "plug-and-play" design; does not need any programming or input from operator beyond initial code load. Runs on 12V and minimum 1.5A AC power supply (1.2A of which is for the heater, I_Lim set by load driver).
 
-Designed as part of USNA-to-NASA internship. 
 
 #### Initial code load prerequisites/software dependencies
-* Arduino IDE
-* Include libraries: bme280 by Bolder Flight, OneWire, and DallasTemperature
-* SWD (Serial Wire Debug) upload mechinism
+* Arduino IDE with [STM32Duino](https://github.com/stm32duino/Arduino_Core_STM32) BSP core added
+* Include libraries: [BolderFlight BME280](https://github.com/bolderflight/bme280), [OneWire](https://github.com/PaulStoffregen/OneWire), and [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library)
+* SWD (Serial Wire Debug) upload mechanism from list of uploads. 
+* Core selected **Generic STM32F103C6**
 
 ### Progress
 - [x] Attempted to use RX8130
