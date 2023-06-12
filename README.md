@@ -4,9 +4,6 @@
 ## Heated Wet Sensor for the NASA AERONET program
 
 
-![adagsdf](/IMG/IMG-4535_focused.jpg)
-
-
 ![Ray tracing render](/IMG/DewDeleterPCB.PNG)
 
 ### Progress
