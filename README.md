@@ -1,8 +1,9 @@
-<img align="right" width="128" height="128" src="https://www.x20.org/wp-content/uploads/2015/01/NASA-logo.png"><br/>
+<img align="right" width="138" height="138" src="https://www.x20.org/wp-content/uploads/2015/01/NASA-logo.png">
+<img align="right" width="108" height="108" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/United_States_Naval_Academy.png">
+
 # AERONET-Heated-wet-sensor
 
 ## Heated Wet Sensor for the NASA AERONET program
-
 
 ![Ray tracing render](/IMG/DewDeleterPCB.PNG)
 
