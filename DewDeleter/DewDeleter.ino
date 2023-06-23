@@ -31,7 +31,7 @@
 /* BME-280 */
 bfs::Bme280 bme;
 
-OneWire oneWire(2); 
+OneWire oneWire(PB5); 
 DallasTemperature sensors(&oneWire); 
 //DS3231 myRTC;
 
@@ -52,40 +52,37 @@ DallasTemperature sensors(&oneWire);
 
 void setup() {
   /* Serial monitor for showing status and data */
-  Serial.begin(115200);
+  //Serial.begin(115200);
   sensors.begin(); 
-  while (!Serial) {}
   /* Initialize the I2C bus */
   Wire.begin();
   Wire.setClock(400000);
   /* Wire at the primary I2C s */
+  pinMode(PB4, OUTPUT);
   bme.Config(&Wire, bfs::Bme280::I2C_ADDR_PRIM);// A8 and A7
   /* Initialize the BME-280 */
   if (!bme.Begin()) {
-    Serial.println("Error initializing communication with BME-280");
+    //Serial.println("Error initializing communication with BME-280");
+    //digitalWrite(PB4, HIGH);
     while (1) {}
   }
 
-  pinMode(21, INPUT);
-  pinMode(22, INPUT);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(6, OUTPUT);
 
-  pinMode(0, OUTPUT);
-  pinMode(1, OUTPUT);
+  
+
 }
 
 void loop() {
   //date setting function
   // char wantSet = Serial.read();
   // if (wantSet == 'x') {
-  //   Serial.println("1 fish");
+  //   //Serial.println("1 fish");
   //   setDateStuff(year, month, date, dOW, hour, minute, second);
   // }
 
   
-  Serial.print(DangerDew(AtmoSensorDew(), LongTempSensorDew()));
+  DangerDew(AtmoSensorDew(), LongTempSensorDew());
   
 
   SerialPrinter(AtmoSensorDew(), LongTempSensorDew());
@@ -122,7 +119,7 @@ float AtmoSensorDew(){
 
 boolean DangerDew(float AtmoDewPont, float SenseDewPont){
 
-  boolean danger = AtmoDewPont + 18 > SenseDewPont;
+  boolean danger = AtmoDewPont + 10 > SenseDewPont;
 
   if (danger){
     digitalWrite(6, HIGH);
@@ -139,68 +136,68 @@ void SerialPrinter(float AtmoDewPont, float SenseDewPont){
   bme.Read();
   sensors.requestTemperatures(); 
 
-  Serial.print("Temp:");
-  Serial.print(bme.die_temp_c());
-  // Serial.print(", FreedomTemp:");
-  // Serial.print(FreedomUnits(bme.die_temp_c()));
-  Serial.print(", Humid:");
-  Serial.print(bme.humidity_rh());
-  Serial.print(", DewPont:");
-  Serial.print(AtmoDewPont);
+  //Serial.print("Temp:");
+  //Serial.print(bme.die_temp_c());
+  // //Serial.print(", FreedomTemp:");
+  // //Serial.print(FreedomUnits(bme.die_temp_c()));
+  //Serial.print(", Humid:");
+  //Serial.print(bme.humidity_rh());
+  //Serial.print(", DewPont:");
+  //Serial.print(AtmoDewPont);
 
-  Serial.print(", LongSenseC:"); 
-  Serial.print(sensors.getTempCByIndex(0));
+  //Serial.print(", LongSenseC:"); 
+  //Serial.print(sensors.getTempCByIndex(0));
 
-  // Serial.print(", LongSenseF:"); 
-  // Serial.print(sensors.getTempFByIndex(0)); 
+  // //Serial.print(", LongSenseF:"); 
+  // //Serial.print(sensors.getTempFByIndex(0)); 
 
-  Serial.print(", LongSenseDewPoint:");
-  Serial.print(SenseDewPont);
+  //Serial.print(", LongSenseDewPoint:");
+  //Serial.print(SenseDewPont);
 
-  Serial.print(", ethernet reading:");
-  Serial.print(analogRead(21));
+  //Serial.print(", ethernet reading:");
+  //Serial.print(analogRead(21));
 
-  // Serial.print("   Time(YYMMDDwHHMMSS): 2");
+  // //Serial.print("   Time(YYMMDDwHHMMSS): 2");
 	// if (century) {			// Won't need this for 89 years.
-	// 	Serial.print("1");
+	// 	//Serial.print("1");
 	// } else {
-	// 	Serial.print("0");
+	// 	//Serial.print("0");
 	// }
-	// Serial.print(myRTC.getYear(), DEC);
-	// Serial.print(' ');
+	// //Serial.print(myRTC.getYear(), DEC);
+	// //Serial.print(' ');
 	
 	// // then the month
-	// Serial.print(myRTC.getMonth(century), DEC);
-	// Serial.print(" ");
+	// //Serial.print(myRTC.getMonth(century), DEC);
+	// //Serial.print(" ");
   
 	// // then the date
-	// Serial.print(myRTC.getDate(), DEC);
-	// Serial.print(" ");
+	// //Serial.print(myRTC.getDate(), DEC);
+	// //Serial.print(" ");
   
 	// // and the day of the week
-	// Serial.print(myRTC.getDoW(), DEC);
-	// Serial.print(" ");
+	// //Serial.print(myRTC.getDoW(), DEC);
+	// //Serial.print(" ");
   
 	// // Finally the hour, minute, and second
-	// Serial.print(myRTC.getHour(h12Flag, pmFlag), DEC);
-	// Serial.print(" ");
-	// Serial.print(myRTC.getMinute(), DEC);
-	// Serial.print(" ");
-	// Serial.print(myRTC.getSecond(), DEC);
+	// //Serial.print(myRTC.getHour(h12Flag, pmFlag), DEC);
+	// //Serial.print(" ");
+	// //Serial.print(myRTC.getMinute(), DEC);
+	// //Serial.print(" ");
+	// //Serial.print(myRTC.getSecond(), DEC);
 
-  // Serial.print("   ");
+  // //Serial.print("   ");
 
   // //chack alarms
-  // Serial.print(myRTC.checkAlarmEnabled(1));
-  // Serial.print(" ");
-  // Serial.print(myRTC.checkAlarmEnabled(2));
+  // //Serial.print(myRTC.checkAlarmEnabled(1));
+  // //Serial.print(" ");
+  // //Serial.print(myRTC.checkAlarmEnabled(2));
 
-  // Serial.print("   ");
-  // Serial.print(myRTC.checkIfAlarm(1, false));
-  // Serial.print(" ");
-  // Serial.print(myRTC.checkIfAlarm(2, false));
+  // //Serial.print("   ");
+  // //Serial.print(myRTC.checkIfAlarm(1, false));
+  // //Serial.print(" ");
+  // //Serial.print(myRTC.checkIfAlarm(2, false));
 
-  Serial.println();
+  //Serial.println();
 
 }
 
@@ -216,17 +213,17 @@ void SerialPrinter(float AtmoDewPont, float SenseDewPont){
 //   byte temp1, temp2;
 //   char inString[20];
   
-//   Serial.println("2 fish");
+//   //Serial.println("2 fish");
 
 //   //byte j=0;
 //   // while (!gotString) {
 //   //   if (Serial.available()) {
-//   //     Serial.println("4 fish");
+//   //     //Serial.println("4 fish");
 //   //     inChar = Serial.read();
 //   //     inString[j] = inChar; //STUPID WHILE LOOP
 //   //     j += 1;               //let this be a testament to while loop's inadequecy 
 //   //     if (inChar == 'x') {
-//   //       Serial.println("5 fish");
+//   //       //Serial.println("5 fish");
 //   //       gotString = true;
 //   //     }
 //   //   } 
@@ -237,7 +234,7 @@ void SerialPrinter(float AtmoDewPont, float SenseDewPont){
 //     inString[i] = inChar;
 //   }
 
-//   Serial.println(inString);
+//   //Serial.println(inString);
 //   // Read year first
 //   temp1 = (byte)inString[0] -48;
 //   temp2 = (byte)inString[1] -48;
